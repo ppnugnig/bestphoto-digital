@@ -139,16 +139,17 @@ exports.getUserCart = async (req, res) => {
   }
 };
 
-exports.Address = async (req, res) => {
+exports.getUserAddress = async (req, res) => {
   try {
-    const userAddress = await User.find(
-      { username: req.user.username }
-    ).exec();
-    res.json({ ok: true });
+    const user = await User.findOne({ username: req.user.username }).select(
+      "houseNum moo province district subDistrict zipcode tel"
+    );
+    res.json(user);
   } catch (err) {
-    res.status(500).send("saveAddress Error");
+    res.status(500).json({ error: "Server error" });
   }
 };
+
 exports.saveOrder = async (req, res) => {
   try {
     let user = await User.findOne({ username: req.user.username }).exec();

@@ -11,7 +11,7 @@ const {
     changeRole,
     userCart,
     getUserCart,
-    Address,
+    getUserAddress ,
     saveOrder,
     emptyCart,
     userProfile,
@@ -55,7 +55,7 @@ router.post("/change-role", auth, adminCheck, changeRole);
 //@Endpoint  http://localhost:5000/api/users/cart  POST/GET
 router.post("/user/cart", auth, userCart);
 router.get("/user/cart", auth, getUserCart);
-router.post("/user/address", auth, Address);
+router.get("/user/address", auth, getUserAddress);
 router.post("/user/order", auth, saveOrder);
 router.get("/user/orders", auth, getOrders);
 router.delete("/user/cart", auth, emptyCart);
